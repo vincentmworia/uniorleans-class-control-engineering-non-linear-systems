@@ -1,3 +1,4 @@
+clc; clear; close all;
 % Bode plots and gain/phase at w = 5 for b = 3 and b = 30
 
 w = 5;                     % frequency of interest (rad/s)
