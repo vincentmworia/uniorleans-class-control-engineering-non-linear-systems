@@ -1,23 +1,23 @@
 clear; close all; clc;
 s = tf('s');
 
-L  = 5 / ((1 + s/2) * (1 + s/10));     % Example L(s)  
-k1 = 0.2;                               % sector lower bound
-k2 = 2.0;                               % sector upper bound
-w  = logspace(-3, 3, 3000);             % freq grid
+L  = 5 / ((1 + s/2) * (1 + s/10));      
+k1 = 0.2;                              
+k2 = 2.0;                               
+w  = logspace(-3, 3, 3000);            
 
 % Off-center circle 
-a_off = 2.0;     % center real coordinate = -a_off
-b_off = 1.0;     % center imag coordinate = +/- b_off
-r_off = 1.5;     % radius
+a_off = 2.0;     
+b_off = 1.0;   
+r_off = 1.5;    
 
 Ljw = squeeze(freqresp(L, w));
  
-%% 1) POPOV  
-% Start: sector [k1,k2]
-% Trick: H(x)=k1*x + H'(x)  => sector becomes [0, k2-k1]
-% New linear part: L1(s)=L(s)/(1+k1*L(s)) 
 
+
+
+
+%% 1) POPOV   
 k = k2 - k1;
 if k <= 0, error('Need k2 > k1'); end
 
@@ -46,11 +46,7 @@ else
     title(sprintf('Popov margin (q = %.4g): must stay >= 0', qFound));
 end
 
-%% 2) CIRCLE CRITERION (sector [k1,k2])
-% Forbidden disk is the circle with diameter endpoints:
-%   a = -1/k1  and  b = -1/k2   (on the real axis)
-% PASS if Nyquist of L(jw) stays OUTSIDE the disk.
-
+%% 2) CIRCLE CRITERION (sector [k1,k2]) 
 fprintf('\n[CIRCLE]\n');
 
 figure; nyquist(L, w); grid on; hold on;
@@ -80,11 +76,7 @@ else
 end
 hold off;
 
-%% 3) OFF-CENTER (OFF-AXIS) CIRCLE
-% Same idea as Circle, but forbidden circle center is NOT on real axis.
-% Your exam/course usually GIVES how to compute (a_off,b_off,r_off).
-% Here: you input them, we plot + check.
- 
+%% 3) OFF-CENTER (OFF-AXIS) CIRCLE 
 fprintf('\n[OFF-CENTER CIRCLE]\n');
 
 figure; nyquist(L, w); grid on; hold on;

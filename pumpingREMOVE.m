@@ -1,12 +1,12 @@
-%% Pumping phenomenon – Describing function (EXAM VERSION)
+ 
 clear; close all; clc;
 
 p = tf('p');
-G = 10/(p*(1+0.16*p));      % Given plant
-M = pi;  xM = 1;            % Given saturation
+G = 10/(p*(1+0.16*p));       
+M = pi;  xM = 1;             
 x1 = linspace(0.01,10,400);
 
-%% Describing function of saturation
+%% Describing function 
 N = (M/xM)*ones(size(x1));
 idx = x1 > xM;
 N(idx) = (2*M/(pi*xM)) .* ...

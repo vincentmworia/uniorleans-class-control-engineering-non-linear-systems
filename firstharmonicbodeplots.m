@@ -1,9 +1,8 @@
-clc; clear; close all;
-% Bode plots and gain/phase at w = 5 for b = 3 and b = 30
+clc; clear; close all; 
 
-w = 5;                     % frequency of interest (rad/s)
-b_values = [3 30];         % both cases
-G = cell(1,2);             % store transfer functions
+w = 5;                     
+b_values = [3 30];          
+G = cell(1,2);             
 
 figure; hold on; grid on;
 
@@ -13,11 +12,9 @@ for i = 1:2
     num = b^2;
     den = [1 2*b b^2];
 
-    G{i} = tf(num, den);   % store system
+    G{i} = tf(num, den);  
+    bode(G{i});    
 
-    bode(G{i});            % plot on same figure
-
-    % Get magnitude and phase at w = 5
     [mag, phase] = bode(G{i}, w);
 
     mag = mag(:);

@@ -13,7 +13,7 @@ grid on
 %% Saturation
 M  = 2;
 xM = 1;
-x1 = 0:100;    % professor used integers 0 → 100
+x1 = 0:100;     
 
 N1 = zeros(size(x1));
 
@@ -21,8 +21,7 @@ for k = 1:length(x1)
 
     if x1(k) <= xM
         N1(k) = M / xM;   
-    else
-        % full describing function formula
+    else 
         N1(k) = (2*M/(xM*pi)) * ( asin(xM/x1(k)) + (xM/x1(k))*sqrt(1 - (xM/x1(k))^2) );
     end
 end
